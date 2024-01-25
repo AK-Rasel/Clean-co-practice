@@ -1,5 +1,7 @@
+import Container from "../Components/ShearComponents/Container";
+
 const About = () => {
-  return <div>about</div>;
+  return <Container>Abdfgdrgdtjg</Container>;
 };
 
 export default About;

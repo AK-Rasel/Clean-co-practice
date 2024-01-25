@@ -1,7 +1,7 @@
 import HeroImage from "../assets/HeroImage.jpg";
 const Hero = () => {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen ">
       <div className="hero-content m flex-col lg:flex-row-reverse">
         <img src={HeroImage} className="max-w-md rounded-lg shadow-2xl" />
         <div>
