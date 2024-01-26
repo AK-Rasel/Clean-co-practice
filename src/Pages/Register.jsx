@@ -1,16 +1,21 @@
+import { useState } from "react";
 import Container from "../Components/ShearComponents/Container";
 import useAuthUtilite from "../Hooks/useAuthUtilite";
 
 const Register = () => {
-  const { user, login } = useAuthUtilite();
-  const loginHandele = (e) => {
+  const { user, createUser } = useAuthUtilite();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  console.log(user);
+  const loginHandele = async (e) => {
     e.preventDefault();
-    const from = e.target;
-    const email = from.email.value;
-    const Password = from.password.value;
-    console.log(email, Password);
+    try {
+      await createUser(email, password);
+      console.log("create");
+    } catch (err) {
+      console.log(err);
+    }
   };
-  console.log(user, login);
   return (
     <Container>
       <div className="hero min-h-screen bg-base-200">
@@ -33,7 +38,7 @@ const Register = () => {
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
-                  name="email"
+                  onBlur={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -45,7 +50,7 @@ const Register = () => {
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
-                  name="password"
+                  onBlur={(e) => setPassword(e.target.value)}
                   required
                 />
                 <label className="label">
@@ -56,7 +61,7 @@ const Register = () => {
               </div>
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">
-                  Login
+                  Register
                 </button>
               </div>
             </form>
