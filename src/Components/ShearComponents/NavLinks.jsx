@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import Container from "./Container";
+import useAuthUtilite from "../../Hooks/useAuthUtilite";
 
 const NavLinks = () => {
+  const { user, logOut } = useAuthUtilite();
+
+  console.log(user);
   return (
     <div className="w-full navbar ">
       <Container>
@@ -59,14 +63,20 @@ const NavLinks = () => {
               Contact
             </NavLink>
 
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? "btn btn-primary" : "btn btn-ghost"
-              }
-            >
-              Login
-            </NavLink>
+            {user?.email ? (
+              <button className="btn btn-ghost" onClick={logOut}>
+                Log Out
+              </button>
+            ) : (
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  isActive ? "btn btn-primary" : "btn btn-ghost"
+                }
+              >
+                Login
+              </NavLink>
+            )}
           </div>
         </div>
       </Container>

@@ -1,17 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../Components/ShearComponents/Container";
 import useAuthUtilite from "../Hooks/useAuthUtilite";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { user, login } = useAuthUtilite();
-  const loginHandele = (e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navget = useNavigate();
+  const loginHandele = async (e) => {
     e.preventDefault();
-    const from = e.target;
-    const email = from.email.value;
-    const Password = from.password.value;
-    console.log(email, Password);
+    // console.log(email, password);
+    const toastId = toast.loading("Loggin in");
+    try {
+      await login(email, password);
+      toast.success("Logged in", { id: toastId });
+      navget("/");
+    } catch (err) {
+      toast.error(err.message, { id: toastId });
+    }
   };
-  console.log(user, login);
+  console.log(user);
 
   return (
     <Container>
@@ -35,7 +45,7 @@ const Login = () => {
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
-                  name="email"
+                  onBlur={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -47,7 +57,7 @@ const Login = () => {
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
-                  name="password"
+                  onBlur={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>

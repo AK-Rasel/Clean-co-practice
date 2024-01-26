@@ -8,7 +8,9 @@ const MainLayout = ({ children }) => {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
+
         <NavLinks />
+
         {/* Page content here */}
         {children}
       </div>
@@ -18,7 +20,7 @@ const MainLayout = ({ children }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200">
+        <div className="menu p-4 w-80 min-h-full bg-base-200">
           {/* Sidebar content here */}
           <li>
             <a>Sidebar Item 1</a>
@@ -26,7 +28,7 @@ const MainLayout = ({ children }) => {
           <li>
             <a>Sidebar Item 2</a>
           </li>
-        </ul>
+        </div>
       </div>
     </div>
   );

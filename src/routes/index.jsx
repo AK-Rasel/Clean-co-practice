@@ -5,11 +5,17 @@ import Contact from "../Pages/Contact";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Home from "../Pages/Home";
+import PrivetRoute from "./PrivetRoute";
+import Loading from "./Loading";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <Loading>
+        <App />
+      </Loading>
+    ),
     children: [
       {
         index: true,
@@ -17,7 +23,11 @@ const router = createBrowserRouter([
       },
       {
         path: "about",
-        element: <About />,
+        element: (
+          <PrivetRoute>
+            <About />
+          </PrivetRoute>
+        ),
       },
       {
         path: "contact",
