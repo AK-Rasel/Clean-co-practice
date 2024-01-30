@@ -7,6 +7,7 @@ import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 import PrivetRoute from "./PrivetRoute";
 import Loading from "./Loading";
+import Services from "../Pages/Services";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "service",
+        element: <Services />,
       },
     ],
   },

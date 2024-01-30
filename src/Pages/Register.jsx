@@ -1,19 +1,26 @@
 import { useState } from "react";
 import Container from "../Components/ShearComponents/Container";
 import useAuthUtilite from "../Hooks/useAuthUtilite";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { user, createUser } = useAuthUtilite();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   console.log(user);
+  const navget = useNavigate();
   const loginHandele = async (e) => {
     e.preventDefault();
+    const toastId = toast.loading("Registering");
     try {
       await createUser(email, password);
+      toast.success("Success Fully Registared", { id: toastId });
       console.log("create");
+      navget("/");
     } catch (err) {
       console.log(err);
+      toast.error(err.message, { id: toastId });
     }
   };
   return (

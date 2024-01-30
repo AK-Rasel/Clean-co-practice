@@ -1,9 +1,9 @@
 import HeroImage from "../assets/HeroImage.jpg";
 const Hero = () => {
   return (
-    <div className="hero min-h-screen ">
+    <div className="hero h-[calc(56% - 120px)] ">
       <div className="hero-content m flex-col lg:flex-row-reverse">
-        <img src={HeroImage} className="max-w-md rounded-lg shadow-2xl" />
+        <img src={HeroImage} className="max-w-sm rounded-lg shadow-2xl" />
         <div>
           <h1 className="text-5xl font-bold">
             Quality Cleaning <br />

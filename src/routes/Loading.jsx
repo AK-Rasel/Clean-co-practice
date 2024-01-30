@@ -1,7 +1,6 @@
-import React from "react";
 import Container from "../Components/ShearComponents/Container";
 import useAuthUtilite from "../Hooks/useAuthUtilite";
-
+import Propstyps from "prop-types";
 const Loading = ({ children }) => {
   const { isLoading } = useAuthUtilite();
   if (isLoading) {
@@ -13,5 +12,8 @@ const Loading = ({ children }) => {
   }
   return children;
 };
-
+// propestyps
+Loading.propTypes = {
+  children: Propstyps.node,
+};
 export default Loading;

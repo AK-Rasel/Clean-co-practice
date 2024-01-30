@@ -1,9 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import Container from "./Container";
 import useAuthUtilite from "../../Hooks/useAuthUtilite";
+import Dropdown from "../Dropdown";
 
 const NavLinks = () => {
-  const { user, logOut } = useAuthUtilite();
+  const { user } = useAuthUtilite();
 
   console.log(user);
   return (
@@ -62,11 +63,17 @@ const NavLinks = () => {
             >
               Contact
             </NavLink>
+            <NavLink
+              to="/service"
+              className={({ isActive }) =>
+                isActive ? "btn btn-primary" : "btn btn-ghost"
+              }
+            >
+              Services
+            </NavLink>
 
             {user?.email ? (
-              <button className="btn btn-ghost" onClick={logOut}>
-                Log Out
-              </button>
+              <Dropdown />
             ) : (
               <NavLink
                 to="/login"
