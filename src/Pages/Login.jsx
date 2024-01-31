@@ -3,18 +3,27 @@ import Container from "../Components/ShearComponents/Container";
 import useAuthUtilite from "../Hooks/useAuthUtilite";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import useAxios from "../Hooks/useAxios";
 
 const Login = () => {
   const { user, login } = useAuthUtilite();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navget = useNavigate();
+  const axios = useAxios();
+  // funtionanlity
   const loginHandele = async (e) => {
     e.preventDefault();
     // console.log(email, password);
     const toastId = toast.loading("Loggin in");
     try {
-      await login(email, password);
+      const user = await login(email, password);
+      console.log(user.user.email);
+      const res = await axios.post("/auth/access-token", {
+        email: user.user.email,
+      });
+      console.log(res.headers); // Check for the 'Set-Cookie' header
+      console.log(res.data);
       toast.success("Logged in", { id: toastId });
       navget("/");
     } catch (err) {
