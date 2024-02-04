@@ -36,7 +36,11 @@ const router = createBrowserRouter([
       },
       {
         path: "service",
-        element: <Services />,
+        element: (
+          <PrivetRoute>
+            <Services />
+          </PrivetRoute>
+        ),
       },
     ],
   },

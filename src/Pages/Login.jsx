@@ -6,26 +6,29 @@ import toast from "react-hot-toast";
 import useAxios from "../Hooks/useAxios";
 
 const Login = () => {
-  const { user, login } = useAuthUtilite();
+  const { user, login, logOut } = useAuthUtilite();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navget = useNavigate();
+  const navigate = useNavigate();
   const axios = useAxios();
   // funtionanlity
   const loginHandele = async (e) => {
     e.preventDefault();
-    // console.log(email, password);
-    const toastId = toast.loading("Loggin in");
+    const toastId = toast.loading("লগইন হচ্ছে");
+
     try {
       const user = await login(email, password);
-      console.log(user.user.email);
       const res = await axios.post("/auth/access-token", {
         email: user.user.email,
       });
-      console.log(res.headers); // Check for the 'Set-Cookie' header
-      console.log(res.data);
-      toast.success("Logged in", { id: toastId });
-      navget("/");
+
+      if (res.data.success) {
+        toast.success("লগইন হয়েছে", { id: toastId });
+        navigate("/");
+      } else {
+        console.log("অপ্রত্যাশিত রেসপন্স:", res);
+        logOut(); // এই লাইনটি যোগ করা হয়েছে
+      }
     } catch (err) {
       toast.error(err.message, { id: toastId });
     }
