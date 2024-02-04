@@ -3,6 +3,7 @@ import useAxios from "../Hooks/useAxios";
 // import { useEffect, useState } from "react";
 import Container from "../Components/ShearComponents/Container";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const axios = useAxios();
@@ -117,6 +118,9 @@ const Services = () => {
                   {item?.features?.map((feature, index) => (
                     <p key={index}>{feature}</p>
                   ))}
+                  <Link to={`/booking/${item._id}`} className="btn btn-primary">
+                    Booking Now
+                  </Link>
                 </div>
               </div>
             </div>
