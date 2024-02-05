@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAuthUtilite from "../Hooks/useAuthUtilite";
 const Dropdown = () => {
   const { user, logOut } = useAuthUtilite();
@@ -21,7 +22,7 @@ const Dropdown = () => {
           <a>Profile</a>
         </li>
         <li>
-          <a>Orders</a>
+          <Link to="/user-booking"> Order</Link>
         </li>
         <li>
           <button className="text-red-500" onClick={logOut}>
